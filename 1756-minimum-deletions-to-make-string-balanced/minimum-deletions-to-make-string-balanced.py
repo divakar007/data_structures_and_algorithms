@@ -4,49 +4,57 @@ class Solution(object):
         :type s: str
         :rtype: int
         """        
-        if s.count('b') == 0 or s.count('a') == 0:
-            return 0
+        # if s.count('b') == 0 or s.count('a') == 0:
+        #     return 0
         
-        acount = [0] * len(s)
-        bcount = [0] * len(s)
+        # acount = [0] * len(s)
+        # bcount = [0] * len(s)
 
-        bc = 0
-        for i in range(len(s)):
-            if s[i] == 'b':
-                bcount[i] = bc
-                bc += 1
+        # bc = 0
+        # for i in range(len(s)):
+        #     if s[i] == 'b':
+        #         bcount[i] = bc
+        #         bc += 1
         
-        ac = 0
-        for i in range(len(s)-1, -1, -1):
-            if s[i] == 'b':
-                acount[i] = ac
-            else:
-                ac += 1
+        # ac = 0
+        # for i in range(len(s)-1, -1, -1):
+        #     if s[i] == 'b':
+        #         acount[i] = ac
+        #     else:
+        #         ac += 1
 
-        bstart = min(acount[i] + bcount[i] for i in range(len(s)) if s[i] == 'b')
+        # bstart = min(acount[i] + bcount[i] for i in range(len(s)) if s[i] == 'b')
 
-        acount = [0] * len(s)
-        bcount = [0] * len(s)
+        # acount = [0] * len(s)
+        # bcount = [0] * len(s)
 
-        bc = 0
-        for i in range(len(s)):
-            if s[i] == 'b':
-                bc += 1
-            else:
-                bcount[i] = bc
+        # bc = 0
+        # for i in range(len(s)):
+        #     if s[i] == 'b':
+        #         bc += 1
+        #     else:
+        #         bcount[i] = bc
         
-        ac = 0
-        for i in range(len(s)-1, -1, -1):
-            if s[i] == 'a':
-                acount[i] = ac
-                ac += 1
+        # ac = 0
+        # for i in range(len(s)-1, -1, -1):
+        #     if s[i] == 'a':
+        #         acount[i] = ac
+        #         ac += 1
 
-        aend = min(acount[i] + bcount[i] for i in range(len(s)) if s[i] == 'a')
+        # aend = min(acount[i] + bcount[i] for i in range(len(s)) if s[i] == 'a')
 
-        return min(aend, bstart)
+        # return min(aend, bstart)
         
 
-        
+        count = 0
+        answer = 0
+        for c in s:
+            if c == 'b':
+                count += 1
+            elif count:
+                answer += 1
+                count -= 1
+        return answer
 
 
 
