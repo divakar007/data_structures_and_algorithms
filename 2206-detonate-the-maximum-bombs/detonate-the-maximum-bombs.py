@@ -21,9 +21,6 @@ class Solution(object):
         
         nodes = list(range(len(bombs)))
 
-        
-        print(graph)
-
         def dfs(node, visited):
             visited.add(node)
             count = 0
