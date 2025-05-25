@@ -6,29 +6,12 @@ class Solution(object):
         :rtype: int
         """
 
-        left_bits = [0] * 32
-        right_bits = [0] * 32
-
-        result_bits = [0] * 32
-
-        for i in range(31, -1, -1):
-            left_bits[i] = left%2
-            right_bits[i] = right%2
-            left //= 2
-            right //= 2
-        
-        for i in range(32):
-            if left_bits[i] == right_bits[i]:
-                if left_bits[i] == right_bits[i] == 1:
-                    result_bits[i] = 1
-            else:
-                break
-
-        res = 0
-        for i in range(32):
-            res += (result_bits[i] * (2** (31- i)))
-        
-        return res
+        bit = 0
+        while left != right :
+            left = left >> 1
+            right = right >> 1
+            bit += 1
+        return left << bit
 
 
 
