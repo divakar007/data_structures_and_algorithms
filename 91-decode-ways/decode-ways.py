@@ -12,11 +12,8 @@ class Solution(object):
             oneIndex = 0
             if s[index] == '0':
                 continue
-            if index+1 != n:
-                if s[index+1] != '0':
-                    oneIndex = dp[index + 1]
-            else:
-                oneIndex = dp[index + 1]
+
+            oneIndex = dp[index + 1]
 
             twoIndex = 0
             if index != n-1:
