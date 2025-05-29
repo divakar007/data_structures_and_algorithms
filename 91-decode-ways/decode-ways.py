@@ -5,32 +5,26 @@ class Solution(object):
         :rtype: int
         """
         n = len(s)
+        dp = [0] * (n+1)
+        dp[n] = 1
 
-        def decode(index, memo):
-            if index == n:
-                return 1
-            if s[index] == '0':
-                return 0
-
-            if memo[index] != -1:
-                return memo[index]
-            
+        for index in range(n-1, -1, -1):
             oneIndex = 0
+            if s[index] == '0':
+                continue
             if index+1 != n:
                 if s[index+1] != '0':
-                    oneIndex = decode(index + 1, memo)
+                    oneIndex = dp[index + 1]
             else:
-                oneIndex = decode(index + 1, memo)
+                oneIndex = dp[index + 1]
 
             twoIndex = 0
             if index != n-1:
-                if self.isValid(s[index] + s[index+1]):
-                    twoIndex = decode(index+2, memo)
-            memo[index] = oneIndex + twoIndex
-            
-            return memo[index]
-        memo = [-1] * n 
-        return decode(0, memo)
+                if self.isValid(s[index] + s[index + 1]):
+                    twoIndex = dp[index + 2]
+            dp[index] = oneIndex + twoIndex
+
+        return dp[0]
 
     def isValid(self, num):
         return 1 <= int(num) <= 26
