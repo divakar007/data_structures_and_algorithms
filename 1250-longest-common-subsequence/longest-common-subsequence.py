@@ -8,21 +8,13 @@ class Solution(object):
         n1 = len(text1)
         n2 = len(text2)
 
-        memo = [[-1] * n2 for _ in range(n1)]
-        def lcs(ind1, ind2):
-            if ind1 >= n1 or ind2 >= n2:
-                return 0
-
-            if memo[ind1][ind2] != -1:
-                return memo[ind1][ind2]
-             
-            if text1[ind1] == text2[ind2]:
-                memo[ind1][ind2] =  1 + lcs(ind1+1, ind2+1)
-                return memo[ind1][ind2]
-
-            left = lcs(ind1+1, ind2)
-            right = lcs(ind1, ind2+1)
-            memo[ind1][ind2] = max(left, right)
-            return memo[ind1][ind2]
+        memo = [[0] * (n2+1) for _ in range(n1+1)]
         
-        return lcs(0, 0)
+        for i in range(1, n1+1):
+            for j in range(1, n2+1):
+                if text1[i-1] == text2[j-1]:
+                    memo[i][j] = 1 + memo[i-1][j-1]
+                else:
+                    memo[i][j] = max(memo[i-1][j], memo[i][j-1])
+        
+        return memo[n1][n2]
