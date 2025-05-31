@@ -8,13 +8,13 @@ class Solution(object):
         n1 = len(text1)
         n2 = len(text2)
 
-        memo = [[0] * (n2+1) for _ in range(n1+1)]
+        curr = [0] * (n2+1)
         
         for i in range(1, n1+1):
+            prev = curr[:]
             for j in range(1, n2+1):
                 if text1[i-1] == text2[j-1]:
-                    memo[i][j] = 1 + memo[i-1][j-1]
+                    curr[j] = 1 + prev[j-1]
                 else:
-                    memo[i][j] = max(memo[i-1][j], memo[i][j-1])
-        
-        return memo[n1][n2]
+                    curr[j] = max(prev[j], curr[j-1])
+        return curr[n2]
