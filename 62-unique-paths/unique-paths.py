@@ -6,7 +6,7 @@ class Solution(object):
         :rtype: int
         """
 
-        paths_dp = [[1]*n for i in range(m)]
+        paths_dp = [[1]*n for _ in range(m)]
 
         for row in range(1, m):
             for col in range(1, n):
