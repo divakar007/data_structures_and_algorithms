@@ -17,6 +17,7 @@ class Solution:
             if cnt[id] == 2:
                 res.append(node)
             return id
+            
         triplet_to_id = dict()
         cnt = collections.defaultdict(int)
         res = []
