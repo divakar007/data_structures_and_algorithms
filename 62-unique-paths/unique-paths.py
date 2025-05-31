@@ -6,13 +6,7 @@ class Solution(object):
         :rtype: int
         """
 
-        paths_dp = [[0]*n for i in range(m)]
-
-        for i in range(n):
-            paths_dp[0][i] = 1
-        
-        for i in range(m):
-            paths_dp[i][0] = 1
+        paths_dp = [[1]*n for i in range(m)]
 
         for row in range(1, m):
             for col in range(1, n):
