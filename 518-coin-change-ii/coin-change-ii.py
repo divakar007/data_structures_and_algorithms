@@ -6,7 +6,20 @@ class Solution(object):
         :rtype: int
         """
         n = len(coins)
-        memo = [[-1] * n for _ in range(amount+1)]
+        coinChangeDp = [[0] * n for i in range(amount+1)]
+        
+        coinChangeDp[0] = [1] * n
+
+        for curr_amount in range(1, amount+1):
+            for index in range(n):
+                pick = 0
+                if curr_amount >= coins[index]:
+                    pick = coinChangeDp[curr_amount-coins[index]][index]
+                notPick = coinChangeDp[curr_amount][index-1]
+                coinChangeDp[curr_amount][index] = pick+notPick
+        return coinChangeDp[amount][n-1]
+
+
         def waysToMakeChange(curr_amount, index):
             if curr_amount < 0 or index >= n:
                 return 0
