@@ -17,7 +17,6 @@ class Solution(object):
                     min_j = min(min_j, col)
                     max_i = max(max_i, row)
                     max_j = max(max_j, col)
-        print(max_i, min_i, max_j, min_j)
         return (max_i-min_i+1) * (max_j-min_j+1)
 
                     
