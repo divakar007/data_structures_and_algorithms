@@ -19,5 +19,4 @@ class Solution(object):
             for j in range(1, m):
                 dp[i][j] = dp[i][j] + min(dp[i-1][j], dp[i][j-1]) 
         
-        print(dp)
         return dp[n-1][m-1]
