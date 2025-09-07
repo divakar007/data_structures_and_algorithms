@@ -20,7 +20,6 @@ class Solution(object):
                 value += romans[s[i]]
             
             prev = s[i]
-            print(value)
         
         return value
 
